@@ -8,8 +8,8 @@ description: |
 owner: Thor Magnusson # or company name
 first_published: 2020 # if migrating another site, the year of your first publish
 email: your-email@domain.com
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+baseurl: "/threnoscope" # the subpath of your site, e.g. /blog
+url: "http://thormagnusson.github.io" # the base hostname & protocol for your site
 social:
   twitter: https://twitter.com/thormagnusson
   github: https://github.com/thormagnusson
