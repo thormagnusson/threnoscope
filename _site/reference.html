@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<!--
+  Original Design: Spectral by HTML5 UP
+    html5up.net | @n33co
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+  Jekyll build mod
+-->
+<html>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reference</title>
+  <meta name="description" content="A live coding environment for long durations!
+">
+  <!--[if lte IE 8]><script src="/js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="canonical" href="http://localhost:4000/reference.html">
+  <link rel="stylesheet" href="/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="Threnoscope" href="http://localhost:4000/feed.xml">
+</head>
+
+
+  <body>
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+      <!-- Header -->
+<header id="header">
+  <h1><a href="/index.html">Threnoscope</a></h1>
+  <nav id="nav">
+    <ul>
+      <li class="special">
+        <a href="#menu" class="menuToggle"><span>Menu</span></a>
+        <div id="menu">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <!--
+            
+            
+            <li><a href="/audiovideo.html">Audio + Video</a></li>
+            
+            
+            
+            <li><a href="/documentation.html">Documentation</a></li>
+            
+            
+            
+            <li><a href="/download.html">Download</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <li><a href="/publications.html">Publications</a></li>
+            
+            
+            
+            <li><a href="/reference.html">Reference</a></li>
+            
+            
+            
+            <li><a href="/tutorials.html">Tutorials</a></li>
+            
+            
+            
+            
+            
+            
+            
+            
+            -->
+            <li><a href="documentation.html">Documentation</a></li>            
+            <li><a href="reference.html">Reference</a></li>            
+            <li><a href="tutorials.html">Tutorials</a></li>
+            <li><a href="audiovideo.html">Audio + Video</a></li>            
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="download.html">Download</a></li>
+            <!--<li><a href="#">Log In</a></li>
+            <li><a href="/feed.xml"
+                   class="icon fa-feed"> RSS Feed</a></li>-->
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+
+      <article id="main">
+
+  <header>
+    <h2>Reference</h2>
+  </header>
+
+  <section class="wrapper style5">
+    <div class="inner">
+      <section>
+	<header>
+		<h3>Language Reference</h3>
+		<p>General outline of the system and its design ideas</p>
+	</header>
+
+	<p>This page lists most of the methods available in the Threnscope system. Some will be left hidden as they are not fully functioning yet, but those can be found in the SuperCollider class files.</p>
+
+	<h5>The Environment</h5>
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Threnoscope.new(args)</td>
+					<td><b>Arguments: channels, mode, key.</b><br>
+						<b>channels:</b> the number of audio channels.<br>
+						<b>mode:</b> \perform, \performWin, \dev, \displayFS, \displayWin<br>
+						<b>key:</b> The fundamental key (defaulting to A or 55Hz). "G", "Gb", "Gs" or 41Hz.<br>
+						A global object called "~drones" will be created. You can create your own. <br> (for example ~me = ~drones)	.
+					</td> 
+
+				</tr>
+				<tr>
+					<td>drawSpeakers</td>
+					<td>Draws the speaker lines (the sound channels) as in ~drones.drawSpeakers = false</td>
+				</tr>
+				<tr>
+					<td>drawHarmonics</td>
+					<td>Draws the harmonics circles (~drones.drawHarmonics = false)</td>
+				</tr>
+				<tr>
+					<td>drawScale</td>
+					<td>Draws the current scale (~drones.drawScale = true)</td>
+				</tr>							
+				<tr>
+					<td>drawOctaves</td>
+					<td>Draws the octaves in red (~drones.drawOctaves = false)</td>
+				</tr>
+				<tr>
+					<td>playScore(args)</td>
+					<td>Play a score. Args: name, speed</td>
+				</tr>
+				<tr>
+					<td>stopScore(name)</td>
+					<td>Play a score</td>
+				</tr>
+
+				<tr>
+					<td>startRecord</td>
+					<td>Record a performance in a score format to be played with playScore</td>
+				</tr>
+
+				<tr>
+					<td>stopRecord</td>
+					<td>Stop recording a score.</td>
+				</tr>
+				<tr>
+					<td>saveScore(name)</td>
+					<td>Play a score</td>
+				</tr>
+
+				<tr>
+					<td>saveState(name)</td>
+					<td>Save the current state of the environment</td>
+				</tr>	
+
+
+				<tr>
+					<td>loadState(name)</td>
+					<td>Save the current state of the environment</td>
+				</tr>	
+
+				<tr>
+					<td>swapState(name, time)</td>
+					<td>Swap the current state of the environment for a saved one.</td>
+				</tr>	
+
+
+				<tr>
+					<td>playMIDi(filename)</td>
+					<td>play a MIDI file. Experimental feature.</td>
+				</tr>	
+				<tr>
+					<td>quit</td>
+					<td>Kills all the drones and closes the windows. (~drones.quit)</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h5>Environment Controls</h5>
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>env(arg)</td>
+					<td>A global ASR envelope for all subsequent drones.<br>
+					env = 3 // a three second envelope for both attack and decay<br>
+					env = [1, 3] // one second attack, three seconds decay</td>
+				</tr>
+				<tr>
+					<td>env</td>
+					<td>posts the environment envelope</td>
+				</tr>
+				<tr>
+					<td>pushEnv(arg)</td>
+					<td>pushes the type of envelope onto all existing drones.</td>
+				</tr>
+				<tr>
+					<td>createDrone(args)</td>
+					<td><b>Arguments: type, tonic, harmonics, amp, speed, length, angle, degree, ratio, name, env, octave, note</b><br>
+						<b>type:</b> The wave form (e.g. saw, tri, sine, sample)<br>
+						<b>tonic:</b> The harmonic of the drone <br>
+						<b>harmonics:</b> The number of harmonics before the lowpass cutoff filter<br>
+						<b>amp:</b> The amplitude of the drone<br>
+						<b>speed:</b> The speed of the drone (0 is still)<br>
+						<b>length:</b> The length of the drone (in degrees)<br>
+						<b>angle:</b> The location of the drone (its starting angle)<br>
+						<b>degree:</b> The scale degree (typically the 7 notes of a chosen scale)<br>
+						<b>ratio:</b> The ratios (steps) of a full tuning (e.g. 12 tone chromatic)<br>
+						<b>name:</b> The name of the drone <br>
+						<b>env:</b> The envelope of the drone (a single number or array [0, 1]) <br>
+						<b>octave:</b> which octave the drone will appear on <br>
+						<b>note:</b> The musical note (e.g., A, Ab, As, B ...) <br>
+						All these arguments have a default value, and the drone will be given a unique name, so it can be subsequently controlled. The name can be seen by clicking on the drone.
+					</td>
+				</tr>
+				<tr>
+					<td>killDrone(args)</td>
+					<td><b>Arguments: name, time</b><br>
+						<b>type:</b> The name of the drone to be killed<br>
+						<b>tonic:</b> The time it takes to die (overwriting the release time)<br>
+					</td>
+				</tr>
+				<tr>
+					<td>createChord(args)</td>
+					<td><b>Arguments: type, chord, tonic, harmonics, amp, speed, length, angle, degree, ratio, name, env, octave, note</b><br>
+						<b>type:</b> See description of createDrone above<br>
+						<b>chord:</b> The chord type (either its name (e.g. \minor7th) or array ([1, 3, 5]))<br>
+						<b>tonic:</b> The harmonic of the chord's root note <br>
+						<b>harmonics:</b> The number of harmonics before the lowpass cutoff filter<br>
+						<b>amp:</b> The amplitude of the chord<br>
+						<b>speed:</b> The speed of the drone (0 is still)<br>
+						<b>length:</b> The length of the chord drones (in degrees)<br>
+						<b>angle:</b> The location of the chord (its starting angle)<br>
+						<b>degree:</b> The scale degree (typically the 7 notes of a chosen scale)<br>
+						<b>ratio:</b> The ratios (steps) of a full tuning (e.g. 12 tone chromatic)<br>
+						<b>name:</b> The name of the chord <br>
+						<b>env:</b> The envelope of the chord (a single number or array [0, 1]) <br>
+						<b>octave:</b> which octave the chord will appear on <br>
+						<b>note:</b> The root note of the chord (e.g., A, Ab, As, B ...) <br>
+						All these arguments have a default value, and the chord will be given a unique name, so it can be subsequently controlled. The name can be seen by clicking on any of the drones of the chord (which will have the degree as part of the name.
+
+					</td>
+				</tr>
+
+				<tr>
+					<td>defineChord(args)</td>
+					<td><b>Arguments: chord name, root note name, drone 2 name, drone 3 name, etc.</b><br>
+						<b>chord name:</b> What you want to call your chord<br>
+						<b>root note name:</b> Drone 1 name<br>
+						<b>... subsequent notes:</b> Drone N name<br>
+					</td>
+				</tr>
+
+				<tr>
+					<td>killChord(args)</td>
+					<td><b>Arguments: name, time</b><br>
+						<b>name:</b> The name of the chord to be killed<br>
+						<b>time:</b> The time it takes to die (overwriting the release time)<br>
+					</td>
+				</tr>
+
+				<tr>
+					<td>killChords</td>
+					<td>Kill all the chords running</td>
+				</tr>
+
+		
+				<tr>
+				<td>createSatellites(args)</td>
+					<td><b>Arguments: type, ratios, tonic, harmonics, amp, speed, length, angle, num, spread, env, octave, name</b><br>
+						<b>type:</b> The wave form of the satellite drones<br>
+						<b>ratios:</b> An array of ratios of which are possible<br>
+						<b>tonic:</b> The harmonic of the deepest satellite<br>
+						<b>harmonics:</b> The number of harmonics before the lowpass cutoff filter<br>
+						<b>amp:</b> The amplitude of the satellites<br>
+						<b>speed:</b> The speed of the drones (0 is still)<br>
+						<b>length:</b> The length of the satellite drones (in degrees)<br>
+						<b>angle:</b> The location of the satellites (their starting angle)<br>
+						<b>name:</b> The name of the chord <br>
+						<b>env:</b> The envelope of the chord (a single number or array [0, 1]) <br>
+						<b>octave:</b> which octave the chord will appear on <br>
+						All these arguments have a default value, and the satellite group will be given a unique name, so it can be subsequently controlled. The name can be seen by clicking on any of the satellite drones (which will have the degree as part of the name.
+
+					</td>
+				</tr>
+
+				<tr>
+					<td>killSatellite(args)</td>
+					<td><b>Arguments: name, time</b><br>
+						<b>type:</b> The name of the satellite to be killed<br>
+						<b>tonic:</b> The time it takes to die (overwriting the release time)<br>
+					</td>
+				</tr>
+
+				<tr>
+					<td>killSatellites</td>
+					<td>Kill all the satellites running</td>
+				</tr>
+
+				<tr>
+					<td>createMachine(args)</td>
+					<td><b>Arguments: type, target, time, rate, transtime, range, name</b><br>
+						<b>type:</b> The type of machine (working on harmonics, amp, freq, etc.)<br>
+						<b>target:</b> Which drones will it target<br>
+						<b>time:</b> The duration of the machine<br>
+						<b>rate:</b> The frequency of machine operations (in seconds)<br>
+						<b>transtime:</b> How long it takes to go from one state to the end state<br>
+						<b>range:</b> The pitch range of the machine<br>
+						<b>name:</b> The name of the machine (for killing it)<br>
+
+					</td>
+				</tr>
+
+				<tr>
+					<td>killMachine(arg)</td>
+					<td><b>Arguments: name</b><br>
+						<b>type:</b> The name of the satellite to be killed<br>
+					</td>
+				</tr>
+
+				<tr>
+					<td>killMachines</td>
+					<td>Kill all machines running</td>
+				</tr>
+
+				<tr>
+					<td>killAll</td>
+					<td>Kill all drones (including chords and satellites)</td>
+				</tr>
+
+				<tr>
+					<td>freeSynths(arg)</td>
+					<td>Frees only the synths, not machines and other things running</td>
+				</tr>
+				<tr>
+					<td>rename(oldname, newname)</td>
+					<td>Renaming the drone, chord, or any object with a name</td>
+				</tr>	
+
+				<tr>
+					<td>names</td>
+					<td>Posts the names of running drones</td>
+				</tr>	
+				<tr>
+					<td>select(name)</td>
+					<td>Selects a running drone (for manipulation)</td>
+				</tr>	
+				<tr>
+					<td>deSelect(name)</td>
+					<td>deSelects a running drone</td>
+				</tr>	
+				<tr>
+					<td>tuning_(name, dur)</td>
+					<td>Set a new global tuning (e.g., ~drones.tuning = \et12)</td>
+				</tr>	
+				<tr>
+					<td>scale_(name)</td>
+					<td>Set a new global scale (e.g., ~drones.scale = \major)</td>
+				</tr>	
+
+				<tr>
+					<td>scales</td>
+					<td>Posts the names of available scales (although not the 3000 Scala scales)</td>
+				</tr>	
+
+				<tr>
+					<td>states</td>
+					<td>Post the saved states available.</td>
+				</tr>	
+
+				<tr>
+					<td>scores</td>
+					<td>Post the saved scores available.</td>
+				</tr>	
+				<tr>
+					<td>chords</td>
+					<td>Post the available chords.</td>
+				</tr>	
+				<tr>
+					<td>scales</td>
+					<td>Post the non-Scala scales. There are 3800 Scala scales (to many to post0.</td>
+				</tr>	
+
+				<tr>
+					<td>tunings</td>
+					<td>Posts the names of available tunings (although not the 3000 Scala scales)</td>
+				</tr>	
+
+				<tr>
+					<td>postDroneState(name</td>
+					<td>Posts the names of available tunings (although not the 3000 Scala scales)</td>
+				</tr>	
+
+
+
+			</tbody>
+		</table>
+	</div>
+
+
+	<h5>Drone Control</h5>
+	After a drone has been created with .createDrone() (see above) it will have a name as a reference and controlled through that. For example if the drone is called "oxo", it can be controlled via code, for examply by ~oxo.tonic = 2, or ~oxo.harmonics_(10, 5) 
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>tonic_(args)</td>
+					<td>Sets the tonic harmonic of the drone. Args: tonic, time</td>
+				</tr>
+				<tr>
+					<td>relTonic_(args)</td>
+					<td>Set the tonic relative to the current tonic.</td>
+				</tr>
+				<tr>
+					<td>ratio_(args)</td>
+					<td>Sets the ratio of the drone (its note in the selected tuning)</td>
+				</tr>						
+				<tr>
+					<td>relRatio_(args)</td>
+					<td>Sets the ratio of the drone relative to the current ratio</td>
+				</tr>						
+				<tr>
+					<td>degree_(args)</td>
+					<td>Sets the degree of the drone (its note in the selected scale)</td>
+				</tr>						
+				<tr>
+					<td>relDegree_(args)</td>
+					<td>Sets the degree of the drone relative to the current degree</td>
+				</tr>			
+				<tr>
+					<td>note_(arg)</td>
+					<td>Sets the note of the drone (in the C, Ds, Eb form, with "s" for sharp and "b" for flat)</td>
+				</tr>								
+				<tr>
+					<td>octave_(args)</td>
+					<td>Sets the octave of the drone</td>
+				</tr>
+				<tr>
+					<td>relOctave_(args)</td>
+					<td>Sets the octave of the drone relative to the current octave</td>
+				</tr>															
+				<tr>
+					<td>amp_(args)</td>
+					<td>Sets the amplitude of the drone</td>
+				</tr>
+				<tr>
+					<td>relAmp_(args)</td>
+					<td>Sets the amplitude of the drone relative to the current amplitude</td>
+				</tr>
+				<tr>
+					<td>speed_(args)</td>
+					<td>Sets the speed of the drone</td>
+				</tr>
+				<tr>
+					<td>relSpeed_(args)</td>
+					<td>Sets the speed of the drone relative to the current speed</td>
+				</tr>
+				<tr>
+					<td>freq_(args)</td>
+					<td>Sets the frequency of the drone</td>
+				</tr>
+
+				<tr>
+					<td>relFreq_(args)</td>
+					<td>Sets the freq of the drone relative to the current freq</td>
+				</tr>
+				<tr>
+					<td>length_(args)</td>
+					<td>Sets the length of the drone (in degrees)</td>
+				</tr>
+
+				<tr>
+					<td>relLength_(args)</td>
+					<td>Sets the length of the drone relative to the current length</td>
+				</tr>
+				<tr>
+					<td>type_(args)</td>
+					<td>Sets the wave form type of the drone</td>
+				</tr>
+				<tr>
+					<td>harmonics_(args)</td>
+					<td>Sets the number of harmonics before cutoff of the drone</td>
+				</tr>		
+				<tr>
+					<td>resonance_(args)</td>
+					<td>Sets the resonance quality of the filter. <br>
+						First the resonance has to be turned on with a boolean (true)<br>
+					Then the argument will be multiple of the drone frequency</td>
+				</tr>												
+				<tr>
+					<td>relFreq_(args)</td>
+					<td>Sets the frequence of the drone relative to the current frequency</td>
+				</tr>								
+				<tr>
+					<td>set(args)</td>
+					<td>Any synth parameter of the drone can be controlled</td>
+				</tr>	
+				<tr>
+					<td>name_(arg)</td>
+					<td>Set the name of the drone (rename it) </td>
+				</tr>	
+				<tr>
+				<td>setParam(args)</td>
+					<td>This method will create a slider in the GUI for controlling the selected parameter<br>
+						Args are:<br>
+						Parameter: whic parameter will be controlled
+						Low: what is the lowest value of that parameter in the range
+						High: what is the highest value of that parameter in the range
+					</td>
+				</tr>	
+				<td>recParam(args)</td>
+					<td>This method will create a slider in the GUI for controlling the selected parameter. The user's movements will be recorded until the user releases the slider. This allows for more complex control of the parameter.<br>
+						Args are:<br>
+						Parameter: whic parameter will be controlled
+						Low: what is the lowest value of that parameter in the range
+						High: what is the highest value of that parameter in the range
+					</td>
+				</tr>	
+				<tr>
+					<td>auto_(bool)</td>
+					<td>Pause or restart any automation of the drone (eg. from recParam)</td>
+				</tr>
+
+				<tr>
+					<td>clearAuto</td>
+					<td>Remove any automation from the drone</td>
+				</tr>
+
+				<tr>
+					<td>playRatios</td>
+					<td>Plays all the ratios of the current tuning</td>
+				</tr>
+				<tr>
+					<td>playDegrees</td>
+					<td>Plays the degrees of the current scale</td>
+				</tr>
+
+				<tr>
+					<td>playScale</td>
+					<td>Same as playDegrees. Plays all the degrees of the scale</td>
+				</tr>
+
+				<tr>
+					<td>addMIDI</td>
+					<td>Adds MIDI control of the drone (via MIDI interface)	</td>
+				</tr>
+				<tr>
+					<td>removeMIDI</td>
+					<td>Removes MIDI control of the drone</td>
+				</tr>
+				<tr>
+					<td>exposeMIDI</td>
+					<td>Allocates MIDI to drones, depending on the number of MIDI controls</td>
+				</tr>
+
+				<tr>
+					<td>createScale	</td>
+					<td>Create a new scale depending on the ratio location of this drone</td>
+				</tr>
+
+				<tr>
+					<td>addToScale(index)</td>
+					<td>Add the currenty frequency ratio to the new scale at the index.<br>
+					All new notes to the scale need to be added with this method.</td>
+				</tr>
+
+				<tr>
+					<td>saveScale(name, description)</td>
+					<td>Save the scale as a Scala file</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+	<h5>Chord Control</h5>
+	After a chord has been created with .createChord() (see above) it will have a name as a reference and controlled through that. For example if the chord is called "oxo", it can be controlled via code, for examply by ~oxo.tonic = 2, or ~oxo.harmonics_(10, 5) 
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>tonic_(args)</td>
+					<td>Sets the tonic harmonic of the chord. Args: tonic, time</td>
+				</tr>
+				<tr>
+					<td>relTonic_(args)</td>
+					<td>Set the tonic relative to the current tonic.</td>
+				</tr>
+				<tr>
+					<td>ratio_(args)</td>
+					<td>Sets the ratio of the chord's tonic key (its note in the selected tuning)</td>
+				</tr>						
+				<tr>
+					<td>relRatio_(args)</td>
+					<td>Sets the ratio of the chord relative to the current ratio</td>
+				</tr>						
+				<tr>
+					<td>degree_(args)</td>
+					<td>Sets the degree of the chord (its note in the selected scale)</td>
+				</tr>						
+				<tr>
+					<td>relDegree_(args)</td>
+					<td>Sets the degree of the chord relative to the current degree</td>
+				</tr>			
+				<tr>
+					<td>note_(arg)</td>
+					<td>Sets the note of the chord (in the C, Ds, Eb form, with "s" for sharp and "b" for flat)</td>
+				</tr>								
+				<tr>
+					<td>octave_(args)</td>
+					<td>Sets the octave of the chord</td>
+				</tr>
+				<tr>
+					<td>relOctave_(args)</td>
+					<td>Sets the octave of the chord relative to the current octave</td>
+				</tr>															
+				<tr>
+					<td>amp_(args)</td>
+					<td>Sets the amplitude of the chord</td>
+				</tr>
+				<tr>
+					<td>relAmp_(args)</td>
+					<td>Sets the amplitude of the chord relative to the current amplitude</td>
+				</tr>
+				<tr>
+					<td>speed_(args)</td>
+					<td>Sets the speed of the chord</td>
+				</tr>
+				<tr>
+					<td>relSpeed_(args)</td>
+					<td>Sets the speed of the chord relative to the current speed</td>
+				</tr>
+				<tr>
+					<td>freq_(args)</td>
+					<td>Sets the frequency of the chord</td>
+				</tr>
+
+				<tr>
+					<td>relFreq_(args)</td>
+					<td>Sets the freq of the chord relative to the current freq</td>
+				</tr>
+				<tr>
+					<td>length_(args)</td>
+					<td>Sets the length of the chord drones in degrees</td>
+				</tr>
+
+				<tr>
+					<td>relLength_(args)</td>
+					<td>Sets the length of the chord drones relative to the current length</td>
+				</tr>
+				<tr>
+					<td>type_(args)</td>
+					<td>Sets the wave form type of the chord</td>
+				</tr>
+				<tr>
+					<td>harmonics_(args)</td>
+					<td>Sets the number of harmonics before cutoff of the chord</td>
+				</tr>		
+				<tr>
+					<td>resonance_(args)</td>
+					<td>Sets the resonance quality of the filter. <br>
+						First the resonance has to be turned on with a boolean (true)<br>
+					Then the argument will be multiple of the chord drone's frequency</td>
+				</tr>												
+				<tr>
+					<td>relFreq_(args)</td>
+					<td>Sets the frequence of the chord relative to the current frequency</td>
+				</tr>								
+				<tr>
+					<td>set(args)</td>
+					<td>Any synth parameter of the chord can be controlled</td>
+				</tr>	
+				<tr>
+					<td>name_(arg)</td>
+					<td>Set the name of the chord (rename it) </td>
+				</tr>	
+				<tr>
+				<td>setParam(args)</td>
+					<td>This method will create a slider in the GUI for controlling the selected parameter<br>
+						Args are:<br>
+						Parameter: whic parameter will be controlled
+						Low: what is the lowest value of that parameter in the range
+						High: what is the highest value of that parameter in the range
+					</td>
+				</tr>	
+				<td>recParam(args)</td>
+					<td>This method will create a slider in the GUI for controlling the selected parameter. The user's movements will be recorded until the user releases the slider. This allows for more complex control of the parameter.<br>
+						Args are:<br>
+						Parameter: whic parameter will be controlled
+						Low: what is the lowest value of that parameter in the range
+						High: what is the highest value of that parameter in the range
+					</td>
+				</tr>	
+				<tr>
+					<td>auto_(bool)</td>
+					<td>Pause or restart any automation of the chord (eg. from recParam)</td>
+				</tr>
+
+				<tr>
+					<td>clearAuto</td>
+					<td>Remove any automation from the chord</td>
+				</tr>
+
+
+				<tr>
+					<td>addMIDI</td>
+					<td>Adds MIDI control of the drone (via MIDI interface)	</td>
+				</tr>
+				<tr>
+					<td>removeMIDI</td>
+					<td>Removes MIDI control of the drone</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+
+
+	<h5>Satellite Control</h5>
+	After a sattellite swarm has been created with .createSatellite() (see above) it will have a name as a reference and controlled through that. For example if the chord is called "sis", it can be controlled via code, for examply by ~sis.tonic = 2, or ~sis.harmonics_(10, 5) 
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>num_(args)</td>
+					<td>How many satellites will be created.</td>
+				</tr>	
+				<tr>
+					<td>spread_(args)</td>
+					<td>The range of octaves they will appear on</td>
+				</tr>	
+
+
+				<tr>
+					<td>changeScale(args)</td>
+					<td>Change the scale of the satellites. Args: scale, duration, transposition</td>
+				</tr>
+
+				<tr>
+					<td>changeChord(args)</td>
+					<td>Change the chord of the satellites. Args: chord, duration, transposition</td>
+				</tr>
+
+
+				<tr>
+					<td>tonic_(args)</td>
+					<td>Sets the tonic harmonic of the chord. Args: tonic, time</td>
+				</tr>
+				<tr>
+					<td>relTonic_(args)</td>
+					<td>Set the tonic relative to the current tonic.</td>
+				</tr>
+				<tr>
+					<td>ratio_(args)</td>
+					<td>Sets the ratio of the chord's tonic key (its note in the selected tuning)</td>
+				</tr>						
+				<tr>
+					<td>relRatio_(args)</td>
+					<td>Sets the ratio of the chord relative to the current ratio</td>
+				</tr>						
+				<tr>
+					<td>degree_(args)</td>
+					<td>Sets the degree of the chord (its note in the selected scale)</td>
+				</tr>						
+				<tr>
+					<td>relDegree_(args)</td>
+					<td>Sets the degree of the chord relative to the current degree</td>
+				</tr>			
+				<tr>
+					<td>note_(arg)</td>
+					<td>Sets the note of the chord (in the C, Ds, Eb form, with "s" for sharp and "b" for flat)</td>
+				</tr>								
+				<tr>
+					<td>octave_(args)</td>
+					<td>Sets the octave of the chord</td>
+				</tr>
+				<tr>
+					<td>relOctave_(args)</td>
+					<td>Sets the octave of the chord relative to the current octave</td>
+				</tr>															
+				<tr>
+					<td>amp_(args)</td>
+					<td>Sets the amplitude of the chord</td>
+				</tr>
+				<tr>
+					<td>relAmp_(args)</td>
+					<td>Sets the amplitude of the chord relative to the current amplitude</td>
+				</tr>
+				<tr>
+					<td>speed_(args)</td>
+					<td>Sets the speed of the chord</td>
+				</tr>
+				<tr>
+					<td>relSpeed_(args)</td>
+					<td>Sets the speed of the chord relative to the current speed</td>
+				</tr>
+				<tr>
+					<td>freq_(args)</td>
+					<td>Sets the frequency of the chord</td>
+				</tr>
+
+				<tr>
+					<td>relFreq_(args)</td>
+					<td>Sets the freq of the chord relative to the current freq</td>
+				</tr>
+				<tr>
+					<td>length_(args)</td>
+					<td>Sets the length of the chord drones in degrees</td>
+				</tr>
+
+				<tr>
+					<td>relLength_(args)</td>
+					<td>Sets the length of the chord drones relative to the current length</td>
+				</tr>
+				<tr>
+					<td>type_(args)</td>
+					<td>Sets the wave form type of the chord</td>
+				</tr>
+				<tr>
+					<td>harmonics_(args)</td>
+					<td>Sets the number of harmonics before cutoff of the chord</td>
+				</tr>		
+				<tr>
+					<td>resonance_(args)</td>
+					<td>Sets the resonance quality of the filter. <br>
+						First the resonance has to be turned on with a boolean (true)<br>
+					Then the argument will be multiple of the chord drone's frequency</td>
+				</tr>												
+				<tr>
+					<td>relFreq_(args)</td>
+					<td>Sets the frequence of the chord relative to the current frequency</td>
+				</tr>								
+				<tr>
+					<td>set(args)</td>
+					<td>Any synth parameter of the chord can be controlled</td>
+				</tr>	
+				<tr>
+					<td>name_(arg)</td>
+					<td>Set the name of the chord (rename it) </td>
+				</tr>	
+				<tr>
+				<td>setParam(args)</td>
+					<td>This method will create a slider in the GUI for controlling the selected parameter<br>
+						Args are:<br>
+						Parameter: whic parameter will be controlled
+						Low: what is the lowest value of that parameter in the range
+						High: what is the highest value of that parameter in the range
+					</td>
+				</tr>	
+				<td>recParam(args)</td>
+					<td>This method will create a slider in the GUI for controlling the selected parameter. The user's movements will be recorded until the user releases the slider. This allows for more complex control of the parameter.<br>
+						Args are:<br>
+						Parameter: whic parameter will be controlled
+						Low: what is the lowest value of that parameter in the range
+						High: what is the highest value of that parameter in the range
+					</td>
+				</tr>	
+				<tr>
+					<td>auto_(bool)</td>
+					<td>Pause or restart any automation of the chord (eg. from recParam)</td>
+				</tr>
+
+				<tr>
+					<td>clearAuto</td>
+					<td>Remove any automation from the chord</td>
+				</tr>
+
+
+				<tr>
+					<td>addMIDI</td>
+					<td>Adds MIDI control of the drone (via MIDI interface)	</td>
+				</tr>
+				<tr>
+					<td>removeMIDI</td>
+					<td>Removes MIDI control of the drone</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<h5>Machine Control</h5>
+	There is an alpha system of <i>machines</i> which can be launched to manipulate the drones that are already running, or a selection of them. These machines will randomly pick a drone or a chord and manipulate the parameters that are chosen (such as chord, scale, amplitude or harmonics).
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Method</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>start</td>
+					<td>Start the machine if it has been stopped.</td>
+				</tr>	
+				<tr>
+					<td>stop</td>
+					<td>Stop the machine but leave it in the system.</td>
+				</tr>	
+				<tr>
+					<td>kill</td>
+					<td>Kill the machine</td>
+				</tr>	
+
+				
+			</tbody>
+		</table>
+	</div>
+
+
+</section>
+
+
+
+    </div>
+  </section>
+
+</article>
+
+
+      <!-- Footer -->
+<footer id="footer">
+  <ul class="icons">
+    
+    
+    
+    <li><a target="_blank" href="https://twitter.com/thormagnusson" class="icon fa-twitter"
+           ><span class="label">twitter</span></a></li>
+    
+    
+    
+    
+    
+    <li><a target="_blank" href="https://github.com/thormagnusson" class="icon fa-github"
+           ><span class="label">github</span></a></li>
+    
+    
+    
+    
+    
+    <li><a target="_blank" href="https://www.facebook.com/pg/sonicwriting" class="icon fa-facebook-official"
+           ><span class="label">facebook-official</span></a></li>
+    
+    
+    
+  </ul>
+  <ul class="copyright">
+    <li>&copy; 
+    
+      
+      
+    
+    2020
+    Thor Magnusson</li>
+    <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+    <li>Built with: <a href="http://jekyllrb.com" target="_blank">Jekyll</a></li>
+  </ul>
+</footer>
+
+
+      <!-- Scripts -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollex.min.js"></script>
+<script src="/js/jquery.scrolly.min.js"></script>
+<script src="/js/skel.min.js"></script>
+<script src="/js/util.js"></script>
+<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
+<script src="/js/main.js"></script>
+
+
+    </div>
+
+  </body>
+
+</html>

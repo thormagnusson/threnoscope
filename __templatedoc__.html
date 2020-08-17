@@ -1,0 +1,537 @@
+---
+layout: page
+title: Documentation
+---
+			<section>
+				<header>
+					<h3>Introduction to the Threnoscope</h3>
+					<p>General outline of the system and its design ideas</p>
+				</header>
+
+				<p>The Threnoscope has an aesthetic and ideological grounding in drone music and the interest in exploring alternative tuning systems and scales. We find different types of tunings and scales in various musical cultures and one of the aims with the software is to create a platform for studying and comparing these, and their effects on our musical perception. There are two views available in the threnoscope: the <b>harmonics view</b> and the <b>scale view</b>.</p>
+
+	<section id="two" class="wrapper alt style4">
+						<section class="spotlight">
+							<div class="image"><img src="images/harmonicsView.png" alt="" /></div><div class="content">
+								<h4>The harmonics view</h4>
+								<p>In the harmonics view, we see concentric circles in the middle of the score representation. These are the harmonics of the fundamental frequency, for example 55Hz (which would be the note A in Western convention). The second circle would then be 110Hz, the third 165Hz, fourth 200Hz, and so on. There are lines crossing the circles and these are the sound outputs of the system. In this case we have 8 channels that cross the circle around the performer/listener (who are in the centre). 
+								</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/scaleView.png" alt="" /></div><div class="content">
+								<h4>The scale view</h4>
+								<p>In the scale view we have the same "pitch space" as in the harmonics view, a drone in the same location would not change pitch by switching between the views. It is only the representation that has switched from showing the harmonics of the fundamental frequency to displaying the selected scale in its tuning. On this picture we see a <b><i>major scale</i></b> (two whole steps, one half step, three whole and a half) where the red circles represent the octaves. (55Hz, 110, 220, 440, etc.)</i> 
+
+								</p>
+							</div>
+						</section>
+						<section class="spotlight">
+							<div class="image"><img src="images/harmonicsView.png" alt="" /></div><div class="content">
+								<h4>The drones</h4>
+								<p>
+								On this image we also see four "drones" with different waveforms. We can see one sine wave (only one harmonic) and the other waves with varying widths. The width of the drone is the number of harmonics it has until it is cut off with a lowpass filter. The purple drone, for instance, has 5 harmonics before it is attenuated. The cross-hairs on this picture are the sound channels (the speakers) and when a drone overlaps a line, it sounds from that channel.							
+							</p>
+							</div>
+						</section>
+					</section>
+				<hr />
+
+
+				<header>
+					<h4>Getting started</h4>
+					<p>Placing drones in multichannel space</p>
+				</header>
+				<p>To start the system from a code editor, you will need to run one line of code:</p>
+
+				<pre><code>s.boot;
+ThrenoScope.new(8);</code></pre>
+				<p>This will start the Threnoscope in an 8-channel view, as we see in the images above. Obviously, you would need a sound device with eight channels for this. For a stereo setup, simply replace 8 with 2. The "s.boot" is just to boot the SuperCollider sound server. Having started the system, there is now a global access to the system through the "~drones" variable that contains the key interaction Threnoscope class.</p>
+
+				<pre><code>
+~drones.drawHarmonics = false
+~drones.drawScale = true
+
+~drones.scale = \chromatic
+~drones.tuning = \just
+~drones.scale =\minor
+~drones.tuning = \et12  // 12-tome equal temperament
+</code></pre>
+				<p>Here we have removed the harmonics view and are now drawing the chosen scale. We then choose the "chromatic" scale (every halfnote in the octave, 12 notes) and then set the tuning to "just" intonation. We change the scale to a minor scale and set the tuning back to equal tempered 12-tone tuning.</p>
+
+				<hr>
+
+			<header>
+					<h4>Making sounds</h4>
+					<p>Creating drones, chords and satellites</p>
+				</header>
+				<p> The most basic operation of the Threnoscope is to create a new drone:</p>
+				<pre><code>~drones.createDrone(\saw, 2, harmonics: 3);</code></pre>
+				This will create a saw wave drone on the 2nd harmonic, with 3 harmonics before the cutoff filter kicks in (so if the system is tuned to a fundamental of 55 Hz, then this drone's frequency will be 110Hz, and the cutoff frequency 330 Hz). </p>
+
+				<pre><code>~drones.createDrone(\saw, 2, harmonics: 3, degree: 3, length: 120, speed: 4);</code></pre>
+				Here we have added more arguments, so the drone will appear on the 3rd degree of the selected scale, so if it was a minor scale it would be a half-tone lower than if it was a major scale, in this case the note of Cb (the lowered third in the scale of A). The length of the drone is in degrees (360 is a full circle) and the speed is self-explanatory.
+				</p>
+				<p>The drone is a prolongued note that does not end until you kill it. You will see that when you created it, a name is given to the drone and that is the reference you use to control it (you can set the name of the drone when you create it, with a "name: \myName" argument). There are various parameters that can be done to control the drone:</p>
+				<pre><code>~oxo.harmonics = 9;
+~oxo.length = 330;
+~oxo.speed = 15;
+~oxo.type = \gendy;
+~oxo.resonance = 3;
+~oxo.kill; // if you want to kill it now
+</code></pre>
+				The same can also be done with a time lag, so the drone might, for example, move from one tonic harmonic to another slowly, and the harmonics might be changed over time too: <p>
+
+				<pre><code>~oxo.tonic_(1, 20); // moving from the 2nd harmonic to the 1st in 20 seconds
+~oxo.harmonics_(1, 10); // moving the cutoff frequency of the lowpass filter to the first harmonic in 10 seconds</code></pre>
+				</p>
+				Here we use underscore ("_") to indicate two arguments and the 2nd argument is the time it takes (in seconds) for reaching the first argument.
+
+				<hr />
+			
+			<header>
+					<h5>Creating Chords</h5>
+					<p>Creating a cluster of drones</p>
+				</header>
+				<p>Sometimes you might want to create more than one drone at the same time. For this you can use "chords" (like piano or guitar chords) and the most typical well-known chords are available in the Threnoscope. Here is the list of chords: "| 5 | minorMajor7th | sus4 | 6 | minor13 | minor7add13 | minorAdd9 | 7s5 | major13 | dominant7th | m7b5 | minorMajor9 | 7s9 | minor6 | major7add13 | 9s11 | 7sus4 | major9sus4 | m7b9 | minor7add11 | minorMajor7thAdd13 | minor9 | add9 | minor11 | 9 | minorMajor7add11 | minorMajor13 | dominant7add11 | minor6add9 | 7b9 | 9b13 | 13 | 7b5 | major7sus4 | 7s5b9 | minor7th | sus2 | 11 | major | minor | m7s5 | dominant7add13 | major7add11 | minorMajor11 | 6sus4 | major9 | major11 | major7th | 9sus4 | 6add9 |"
+				</p>
+
+				<pre><code>~drones.createChord(\saw, \minor, 2)
+~drones.createChord(\saw, \dominant7add11, 4, name:\dom7)
+
+~dom7.tonic_(1, 4)
+~dom7.harmonics_(10, 4)
+~drones.chords // see all the available chords
+</code></pre>
+
+				<p>The chords have all the methods of the drone, so "harmonics", "tonic", "type" etc. are all available methods. You can also <b>create your own chord</b> by passing in an array with the notes of the scale (the array starts with the index of 1). You can also create a chord out of existing drones.
+				</p>
+
+<pre><code>~drones.scale = \chromatic
+~drones.createChord(\tri, [1, 3, 5, 11], tonic: 4, name: \ixi)
+~ixi.kill
+~drones.createDrone(\sine, 2, degree: 1, name:\tonic)
+~drones.createDrone(\sine, 2, degree: 3, name:\third)
+~drones.createDrone(\sine, 2, degree: 5, name:\fifth)
+~drones.defineChord(\dog, \tonic, \third, \fifth)
+~dog.tonic = 4 // move the new chord up to the 4rth octave
+</code></pre>
+
+
+				<hr />
+
+				<header>
+					<h5>Creating Satellites</h5>
+					<p>A larger cluster of drones moving in space</p>
+				</header>
+				<p>Like the chords, the satellites share all the methods of the drone</p>
+
+				<pre><code>~drones.createSatellites(\saw, \minor, 8, name: \ooo)
+~ooo.num = 40
+~ooo.tonic=2
+~ooo.speed=10
+~ooo.speed={rrand(-20, 30)} // pass a function so each satellite gets a different speed
+</code></pre>
+
+
+				<hr />
+
+
+
+				<header>
+					<h4>Tunings and Scales</h4>
+					<p>The inbuilt tunings and scales and the Scala tuning library support</p>
+				</header>
+				<p>The Threnoscope supports over 3800 musical scales and tunings through inbuilt scales and tunings and through supporting the <a href="http://www.huygens-fokker.org/scala/">Scala</a>  library. Users can also create their own scales and tunings with the Threnoscope's TuningTheory software.
+				<pre><code>// let's look at the scale view for tunings
+~drones.drawHarmonics = false
+~drones.drawScale = true
+// we move to the chromactic scale (all 12 notes) to see the different tunings
+~drones.scale = \chromatic
+~drones.tuning = \just
+~drones.tuning = \mean6
+~drones.tuning = \et12 // the standard western equal tempered tuning
+~drones.tuning = \wcSJ // Wendy Carlos' Super Just Tuning
+~drones.scale = \minor
+~drones.tuning = \et12
+
+// let's try some Scala scales/tunings
+~drones.scale = \mean19
+~drones.scale = \safi_arabic
+~drones.scale = \safi_rahevi
+~drones.scale = \solar
+~drones.scale = 'bohlen-p' // because of the hyphen we need quotation marks
+~drones.scale = 'bohlen-p_9'
+
+</code></pre>
+
+				</p>
+		
+				<hr />
+
+				<header>
+					<h4>Threnoscope Scores</h4>
+					<p>The score system for automatic play or augmented performance</p>
+				</header>
+				<p>The Thenoscope has a very simple scores system that allows users to compose full pieces (deterministic or generative), or simple "licks" that can be called during a performance. These scores can play on their own or during a performance where the live coder is working on their own composition. The score is a simple two-dimensional array, where the first index is the time (in seconds) the code will be executed at, and the second is the SuperCollider code itself. Example:
+				<pre><code>[ 123.rand, [
+	[ 0, {~drones.env_([24,5])} ],
+	[ 1, {~drones.createDrone(\eliane, 2, amp:0.2, name:\eli2, harmonics: 4, speed:0, length:220, angle: 20)} ],
+	[ 20, {~drones.createDrone(\eliane, 1, amp:0.1, name:\eli1, speed: 0, length:320, angle: 100)} ],
+	[ 30, {~eli1.harmonics_(10, 20)} ],
+	[ 40, {~eli1.resonance = true} ],
+	[ 50, {~eli2.harmonics_(2, 20)} ],
+	[ 70, {~eli1.resonance_(20, 30)} ],
+	[ 70, {~eli1.resonance_(20, 30)} ],
+	[ 110, {~drones.createDrone(\eliane, 3, amp:0.2, name:\eli3a, speed: 5, length:120, angle: 230)} ],
+	[ 140, {~drones.createDrone(\eliane, 3, amp:0.2, name:\eli3b, speed: -5, length:120, angle: 230)} ],
+	[ 220, {~eli1.resonance_(2, 30)} ],
+	[ 330, {~eli2.kill} ],
+	[ 340, {~eli1.resonance_(1, 15)} ],
+	[ 350, {~eli3a.kill} ],
+	[ 360, {~eli3b.kill} ],
+	[ 400, {~eli1.kill} ]
+]]
+</code></pre>
+				</p>
+				<hr />
+
+				<header>
+					<h4>GUI and Automation</h4>
+					<p>Controlling the Interface via mouse and keyboard</p>
+				</header>
+				<p>The drones in the Threnoscope can be controlled in various ways:
+					<br>* the drone can be rotated around the circle by clicking on it and moving it
+					<br>* the drone can be "played" where the keys 1..9 represent the degrees of the chosen scale
+					<br>* by clicking on the drone, its information appears in the post window (and can be changed there)
+					<br>* any parameter of the drone can be <b>set</b> or <b>recorded</b> by moving the mouse on a slider
+					<pre><code>~drones.createDrone(\eliane, 2, degree: 5, name: \oxo)
+~oxo.setParam(\tonic, 1, 10) // the argument and its low and high values
+~oxo.recParam(\harmonics, 1, 10) // move the mouse around to record. On release it will play
+</code></pre>
+				</p>
+				<hr />
+
+				<header>
+					<h4>MIDI support</h4>
+					<p>The Threnscope has various MIDI functionality</p>
+				</header>
+				<p>Drones can be controlled by MIDI controllers and the system can play MIDI files. However, this is in early stages, and users will need to explore the source code themselves to make the code specific to their own MIDI controller. This code is in the DroneController.sc source code file.
+				</p>
+				<hr />
+
+
+				<header>
+					<h4>Machines</h4>
+					<p>Automation of drone states through machines</p>
+				</header>
+				<p>Machines can be created to change the state of the existing drones (or selected part of them). These can control parameters that can be set through the other interface channels (e.g., tonic, degree, ratio, harmonics, amp, resonance, etc.). Like the MIDI support, this is in early stages. 
+
+				</p>
+				<hr />
+				<h2>Heading Level 2</h2>
+				<h3>Heading Level 3</h3>
+				<h4>Heading Level 4</h4>
+				<h5>Heading Level 5</h5>
+				<h6>Heading Level 6</h6>
+				<hr />
+
+
+
+
+<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+				
+				This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+				This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+				
+
+				<h5>Blockquote</h5>
+				<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+				<h5>Preformatted</h5>
+				<pre><code>i = 0;
+
+while (!deck.isInOrder()) {
+  print 'Iteration ' + i;
+  deck.shuffle();
+  i++;
+}
+
+print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+	</section>
+	<section>
+		<h4>Lists</h4>
+				<div class="row">
+					<div class="6u 12u$(medium)">
+						<h5>Unordered</h5>
+						<ul>
+							<li>Dolor pulvinar etiam.</li>
+							<li>Sagittis adipiscing.</li>
+							<li>Felis enim feugiat.</li>
+						</ul>
+						<h5>Alternate</h5>
+						<ul class="alt">
+							<li>Dolor pulvinar etiam.</li>
+							<li>Sagittis adipiscing.</li>
+							<li>Felis enim feugiat.</li>
+						</ul>
+					</div>
+					<div class="6u$ 12u$(medium)">
+						<h5>Ordered</h5>
+						<ol>
+							<li>Dolor pulvinar etiam.</li>
+							<li>Etiam vel felis viverra.</li>
+							<li>Felis enim feugiat.</li>
+							<li>Dolor pulvinar etiam.</li>
+							<li>Etiam vel felis lorem.</li>
+							<li>Felis enim et feugiat.</li>
+						</ol>
+						<h5>Icons</h5>
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						</ul>
+					</div>
+				</div>
+				<h5>Actions</h5>
+				<div class="row">
+					<div class="6u 12u$(medium)">
+						<ul class="actions">
+							<li><a href="#" class="button special">Default</a></li>
+							<li><a href="#" class="button">Default</a></li>
+						</ul>
+						<ul class="actions small">
+							<li><a href="#" class="button special small">Small</a></li>
+							<li><a href="#" class="button small">Small</a></li>
+						</ul>
+						<ul class="actions vertical">
+							<li><a href="#" class="button special">Default</a></li>
+							<li><a href="#" class="button">Default</a></li>
+						</ul>
+						<ul class="actions vertical small">
+							<li><a href="#" class="button special small">Small</a></li>
+							<li><a href="#" class="button small">Small</a></li>
+						</ul>
+					</div>
+					<div class="6u 12u$(medium)">
+						<ul class="actions vertical">
+							<li><a href="#" class="button special fit">Default</a></li>
+							<li><a href="#" class="button fit">Default</a></li>
+						</ul>
+						<ul class="actions vertical small">
+							<li><a href="#" class="button special small fit">Small</a></li>
+							<li><a href="#" class="button small fit">Small</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h4>Table</h4>
+				<h5>Default</h5>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Item One</td>
+								<td>Ante turpis integer aliquet porttitor.</td>
+								<td>29.99</td>
+							</tr>
+							<tr>
+								<td>Item Two</td>
+								<td>Vis ac commodo adipiscing arcu aliquet.</td>
+								<td>19.99</td>
+							</tr>
+							<tr>
+								<td>Item Three</td>
+								<td> Morbi faucibus arcu accumsan lorem.</td>
+								<td>29.99</td>
+							</tr>
+							<tr>
+								<td>Item Four</td>
+								<td>Vitae integer tempus condimentum.</td>
+								<td>19.99</td>
+							</tr>
+							<tr>
+								<td>Item Five</td>
+								<td>Ante turpis integer aliquet porttitor.</td>
+								<td>29.99</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="2"></td>
+								<td>100.00</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+				<h5>Alternate</h5>
+				<div class="table-wrapper">
+					<table class="alt">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Item One</td>
+								<td>Ante turpis integer aliquet porttitor.</td>
+								<td>29.99</td>
+							</tr>
+							<tr>
+								<td>Item Two</td>
+								<td>Vis ac commodo adipiscing arcu aliquet.</td>
+								<td>19.99</td>
+							</tr>
+							<tr>
+								<td>Item Three</td>
+								<td> Morbi faucibus arcu accumsan lorem.</td>
+								<td>29.99</td>
+							</tr>
+							<tr>
+								<td>Item Four</td>
+								<td>Vitae integer tempus condimentum.</td>
+								<td>19.99</td>
+							</tr>
+							<tr>
+								<td>Item Five</td>
+								<td>Ante turpis integer aliquet porttitor.</td>
+								<td>29.99</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="2"></td>
+								<td>100.00</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</section>
+			<section>
+				<h4>Buttons</h4>
+				<ul class="actions">
+					<li><a href="#" class="button special">Special</a></li>
+					<li><a href="#" class="button">Default</a></li>
+				</ul>
+				<ul class="actions">
+					<li><a href="#" class="button big">Big</a></li>
+					<li><a href="#" class="button">Default</a></li>
+					<li><a href="#" class="button small">Small</a></li>
+				</ul>
+				<ul class="actions fit">
+					<li><a href="#" class="button fit">Fit</a></li>
+					<li><a href="#" class="button special fit">Fit</a></li>
+					<li><a href="#" class="button fit">Fit</a></li>
+				</ul>
+				<ul class="actions fit small">
+					<li><a href="#" class="button special fit small">Fit + Small</a></li>
+					<li><a href="#" class="button fit small">Fit + Small</a></li>
+					<li><a href="#" class="button special fit small">Fit + Small</a></li>
+				</ul>
+				<ul class="actions">
+					<li><a href="#" class="button special icon fa-download">Icon</a></li>
+					<li><a href="#" class="button icon fa-download">Icon</a></li>
+				</ul>
+				<ul class="actions">
+					<li><span class="button special disabled">Disabled</span></li>
+					<li><span class="button disabled">Disabled</span></li>
+				</ul>
+			</section>
+			<section>
+				<h4>Form</h4>
+				<form method="post" action="#">
+					<div class="row uniform">
+						<div class="6u 12u$(xsmall)">
+							<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+						</div>
+						<div class="6u$ 12u$(xsmall)">
+							<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+						</div>
+						<div class="12u$">
+							<div class="select-wrapper">
+								<select name="demo-category" id="demo-category">
+									<option value="">- Category -</option>
+									<option value="1">Manufacturing</option>
+									<option value="1">Shipping</option>
+									<option value="1">Administration</option>
+									<option value="1">Human Resources</option>
+								</select>
+							</div>
+						</div>
+						<div class="4u 12u$(small)">
+							<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+							<label for="demo-priority-low">Low</label>
+						</div>
+						<div class="4u 12u$(small)">
+							<input type="radio" id="demo-priority-normal" name="demo-priority">
+							<label for="demo-priority-normal">Normal</label>
+						</div>
+						<div class="4u$ 12u$(small)">
+							<input type="radio" id="demo-priority-high" name="demo-priority">
+							<label for="demo-priority-high">High</label>
+						</div>
+						<div class="6u 12u$(small)">
+							<input type="checkbox" id="demo-copy" name="demo-copy">
+							<label for="demo-copy">Email me a copy</label>
+						</div>
+						<div class="6u$ 12u$(small)">
+							<input type="checkbox" id="demo-human" name="demo-human" checked>
+							<label for="demo-human">Not a robot</label>
+						</div>
+						<div class="12u$">
+							<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+						</div>
+						<div class="12u$">
+							<ul class="actions">
+								<li><input type="submit" value="Send Message" class="special" /></li>
+								<li><input type="reset" value="Reset" /></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+			</section>
+			<section>
+				<h4>Image</h4>
+				<h5>Fit</h5>
+				<div class="box alt">
+					<div class="row uniform 50%">
+						<div class="12u"><span class="image fit"><img src="images/banner.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic02.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic01.jpg" alt="" /></span></div>
+						<div class="4u"><span class="image fit"><img src="images/pic03.jpg" alt="" /></span></div>
+					</div>
+				</div>
+				<h5>Left &amp; Right</h5>
+				<p><span class="image left"><img src="images/pic04.jpg" alt="" /></span>Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien. Morbi mattis mi consectetur tortor elementum, varius pellentesque velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus leo, tempus sed finibus eget, fringilla quis risus. Maecenas et lorem quis sem varius sagittis et a est. Maecenas iaculis iaculis sem. Donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit accumsan cursus. Etiam ut gravida sapien.</p>
+				<p><span class="image right"><img src="images/pic05.jpg" alt="" /></span>Vestibulum ultrices risus velit, sit amet blandit massa auctor sit amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis id vel diam. Praesent sit amet posuere risus, eu faucibus lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam. Proin nec dui cursus, posuere dui eget interdum. Fusce lectus magna, sagittis at facilisis vitae, pellentesque at etiam. Quisque posuere leo quis sem commodo, vel scelerisque nisi scelerisque. Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec felis elementum varius. Nam sapien ante, varius in pulvinar vitae, rhoncus id massa. Donec varius ex in mauris ornare, eget euismod urna egestas. Etiam lacinia tempor ipsum, sodales porttitor justo. Aliquam dolor quam, semper in tortor eu, volutpat efficitur quam. Fusce nec fermentum nisl. Aenean erat diam, tempus aliquet erat. Etiam iaculis nulla ipsum, et pharetra libero rhoncus ut. Phasellus rutrum cursus velit, eget condimentum nunc blandit vel. In at pulvinar lectus. Morbi diam ante, vulputate et imperdiet eget, fermentum non dolor. Ut eleifend sagittis tincidunt. Sed viverra commodo mi, ac rhoncus justo. Duis neque ligula, elementum ut enim vel, posuere finibus justo. Vivamus facilisis maximus nibh quis pulvinar. Quisque hendrerit in ipsum id tellus facilisis fermentum. Proin mauris dui.</p>
+			</section>
+
+				<h5>Reading List</h5>
+				<ol>
+					<li>Key book: <a href="http://www.sup.org/books/title/?id=11232">Agnotology:
+The Making and Unmaking of Ignorance</a>.</li>
+					<li>Article: <a href="http://thefederalist.com/2014/01/17/the-death-of-expertise/">The Death of Expertise</li>
+					<li>Felis enim feugiat.</li>
+					<li>Dolor pulvinar etiam.</li>
+					<li>Etiam vel felis lorem.</li>
+					<li>Felis enim et feugiat.</li>
+				</ol>
+
