@@ -13,12 +13,12 @@
   <title>Tutorials</title>
   <meta name="description" content="A live coding environment for long durations!
 ">
-  <!--[if lte IE 8]><script src="/js/ie/html5shiv.js"></script><![endif]-->
-  <link rel="canonical" href="http://localhost:4000/tutorials.html">
-  <link rel="stylesheet" href="/css/main.css" />
-  <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
-  <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
-  <link rel="alternate" type="application/rss+xml" title="Threnoscope" href="http://localhost:4000/feed.xml">
+  <!--[if lte IE 8]><script src="/threnoscope/js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="canonical" href="http://localhost:4000/threnoscope/tutorials.html">
+  <link rel="stylesheet" href="/threnoscope/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/threnoscope/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/threnoscope/css/ie9.css" /><![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="Threnoscope" href="http://localhost:4000/threnoscope/feed.xml">
 </head>
 
 
@@ -29,7 +29,7 @@
 
       <!-- Header -->
 <header id="header">
-  <h1><a href="/index.html">Threnoscope</a></h1>
+  <h1><a href="/threnoscope/index.html">Threnoscope</a></h1>
   <nav id="nav">
     <ul>
       <li class="special">
@@ -40,19 +40,15 @@
             <!--
             
             
-            <li><a href="/audiovideo.html">Audio + Video</a></li>
+            <li><a href="/threnoscope/audiovideo.html">Audio + Video</a></li>
             
             
             
-            <li><a href="/documentation.html">Documentation</a></li>
+            <li><a href="/threnoscope/documentation.html">Documentation</a></li>
             
             
             
-            <li><a href="/download.html">Download</a></li>
-            
-            
-            
-            
+            <li><a href="/threnoscope/download.html">Download</a></li>
             
             
             
@@ -62,15 +58,19 @@
             
             
             
-            <li><a href="/publications.html">Publications</a></li>
             
             
             
-            <li><a href="/reference.html">Reference</a></li>
+            
+            <li><a href="/threnoscope/publications.html">Publications</a></li>
             
             
             
-            <li><a href="/tutorials.html">Tutorials</a></li>
+            <li><a href="/threnoscope/reference.html">Reference</a></li>
+            
+            
+            
+            <li><a href="/threnoscope/tutorials.html">Tutorials</a></li>
             
             
             
@@ -87,7 +87,7 @@
             <li><a href="publications.html">Publications</a></li>
             <li><a href="download.html">Download</a></li>
             <!--<li><a href="#">Log In</a></li>
-            <li><a href="/feed.xml"
+            <li><a href="/threnoscope/feed.xml"
                    class="icon fa-feed"> RSS Feed</a></li>-->
           </ul>
         </div>
@@ -105,14 +105,34 @@
 
   <section class="wrapper style5">
     <div class="inner">
-          <p>Tutorials of the Threnoscope's main features</p>
+          <p>Short tutorials of some main Threnoscope features</p>
 
 			<section>
 
 				<h4>Scores</h4>
-				<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-				This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-				This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+				<p>The Threnoscope has a bespoke score format. It is simple: a two-dimensional array, where the first item is the random seed (a fixed random seed will result in a deterministic execution even when using random functions). The second item is the score itself, with the first item being the time of execution (in seconds since starting the score) and the second item is the code to be run. This code can be any ThrenoScope or SuperCollider code, deterministic or stochastic.</p>
+				<p>When creating drones, chords or satellites in a score, it is a good idea to always name them, such that you can control them later on or delete them.</p>
+
+				<pre><code>[ 123, [ // the random seed (123), and the start of the score
+	[ 0, {~drones.env_([24,5])} ], // setting the envelope at start, then creating a drone:
+	[ 1, {~drones.createDrone(\eliane, 2, amp:0.2, name:\eli2, harmonics: 4, speed:0, length:220, angle: 20)} ],
+	[ 20, {~drones.createDrone(\eliane, 1, amp:0.1, name:\eli1, speed: 0, length:320, angle: 100)} ],
+	[ 30, {~eli1.harmonics_(10, 20)} ],
+	[ 40, {~eli1.resonance = true} ],
+	[ 50, {~eli2.harmonics_(2, 20)} ],
+	[ 70, {~eli1.resonance_(20, 30)} ],
+	[ 70, {~eli1.resonance_(20, 30)} ],
+	[ 110, {~drones.createDrone(\eliane, 3, amp:0.2, name:\eli3a, speed: 5, length:120, angle: 230)} ],
+	[ 140, {~drones.createDrone(\eliane, 3, amp:0.2, name:\eli3b, speed: -5, length:120, angle: 230)} ],
+	[ 220, {~eli1.resonance_(2, 30)} ],
+	[ 330, {~eli2.kill} ],
+	[ 340, {~eli1.resonance_(1, 15)} ],
+	[ 350, {~eli3a.kill} ],
+	[ 360, {~eli3b.kill} ],
+	[ 400, {~eli1.kill} ]
+]]
+</code></pre>
+
 				<hr />
 
 
@@ -476,13 +496,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 
       <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.scrollex.min.js"></script>
-<script src="/js/jquery.scrolly.min.js"></script>
-<script src="/js/skel.min.js"></script>
-<script src="/js/util.js"></script>
-<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
-<script src="/js/main.js"></script>
+<script src="/threnoscope/js/jquery.min.js"></script>
+<script src="/threnoscope/js/jquery.scrollex.min.js"></script>
+<script src="/threnoscope/js/jquery.scrolly.min.js"></script>
+<script src="/threnoscope/js/skel.min.js"></script>
+<script src="/threnoscope/js/util.js"></script>
+<!--[if lte IE 8]><script src="/threnoscope/js/ie/respond.min.js"></script><![endif]-->
+<script src="/threnoscope/js/main.js"></script>
 
 
     </div>

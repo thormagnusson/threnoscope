@@ -1020,7 +1020,7 @@ body.is-menu-visible #menu { -moz-transform: translateX(0); -webkit-transform: t
 
 #banner .more:after { background-image: url("images/arrow.svg"); background-position: center; background-repeat: no-repeat; background-size: contain; bottom: 4em; content: ''; display: block; height: 1.5em; left: 50%; margin: 0 0 0 -0.75em; position: absolute; width: 1.5em; }
 
-#banner:after { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; -moz-transition: opacity 3s ease-in-out; -webkit-transition: opacity 3s ease-in-out; -ms-transition: opacity 3s ease-in-out; transition: opacity 3s ease-in-out; -moz-transition-delay: 1.25s; -webkit-transition-delay: 1.25s; -ms-transition-delay: 1.25s; transition-delay: 1.25s; content: ''; background: #2e3842; display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0; opacity: 0; }
+#banner:after { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; -moz-transition: opacity 2s ease-in-out; -webkit-transition: opacity 2s ease-in-out; -ms-transition: opacity 2s ease-in-out; transition: opacity 2s ease-in-out; -moz-transition-delay: 1.25s; -webkit-transition-delay: 1.25s; -ms-transition-delay: 1.25s; transition-delay: 1.25s; content: ''; background: #2e3842; display: block; width: 100%; height: 100%; position: absolute; left: 0; top: 0; opacity: 0; }
 
 @media screen and (max-width: 736px) { #banner { padding: 7em 3em 5em 3em ; height: auto; min-height: 0; }
   #banner h2 { font-size: 1.25em; }
@@ -1051,7 +1051,7 @@ body.is-loading #banner:after { opacity: 1; }
 @media screen and (max-width: 736px) { #cta .inner .actions { max-width: none; } }
 
 /* Main */
-#main > header { padding: 12em 0 10em 0 ; background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; text-align: center; }
+#main > header { padding: 12em 0 10em 0 ; background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; text-align: center; }
 
 #main > header h2 { font-size: 1.75em; margin: 0 0 0.5em 0; }
 
@@ -1096,13 +1096,13 @@ body.is-mobile #main > header { background-attachment: scroll; }
 @media screen and (max-width: 736px) { #footer { padding: 3em 2em 1em 2em ; } }
 
 /* Landing */
-body.landing #page-wrapper { background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; padding-top: 0; }
+body.landing #page-wrapper { background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-attachment: fixed; background-position: center center; background-repeat: no-repeat; background-size: cover; padding-top: 0; }
 
 body.landing #footer { background-color: rgba(29, 36, 42, 0.9); }
 
 body.is-mobile.landing #page-wrapper { background: none; }
 
-body.is-mobile.landing #banner, body.is-mobile.landing .wrapper.style4 { background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/images/banner.jpg"); background-position: center center; background-repeat: no-repeat; background-size: cover; }
+body.is-mobile.landing #banner, body.is-mobile.landing .wrapper.style4 { background-image: -moz-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: -ms-linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-image: linear-gradient(top, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/threnoscope/images/banner.jpg"); background-position: center center; background-repeat: no-repeat; background-size: cover; }
 
 body.is-mobile.landing #footer { background-color: #1d242a; }
 

@@ -13,12 +13,12 @@
   <title>Documentation</title>
   <meta name="description" content="A live coding environment for long durations!
 ">
-  <!--[if lte IE 8]><script src="/js/ie/html5shiv.js"></script><![endif]-->
-  <link rel="canonical" href="http://localhost:4000/documentation.html">
-  <link rel="stylesheet" href="/css/main.css" />
-  <!--[if lte IE 8]><link rel="stylesheet" href="/css/ie8.css" /><![endif]-->
-  <!--[if lte IE 9]><link rel="stylesheet" href="/css/ie9.css" /><![endif]-->
-  <link rel="alternate" type="application/rss+xml" title="Threnoscope" href="http://localhost:4000/feed.xml">
+  <!--[if lte IE 8]><script src="/threnoscope/js/ie/html5shiv.js"></script><![endif]-->
+  <link rel="canonical" href="http://localhost:4000/threnoscope/documentation.html">
+  <link rel="stylesheet" href="/threnoscope/css/main.css" />
+  <!--[if lte IE 8]><link rel="stylesheet" href="/threnoscope/css/ie8.css" /><![endif]-->
+  <!--[if lte IE 9]><link rel="stylesheet" href="/threnoscope/css/ie9.css" /><![endif]-->
+  <link rel="alternate" type="application/rss+xml" title="Threnoscope" href="http://localhost:4000/threnoscope/feed.xml">
 </head>
 
 
@@ -29,7 +29,7 @@
 
       <!-- Header -->
 <header id="header">
-  <h1><a href="/index.html">Threnoscope</a></h1>
+  <h1><a href="/threnoscope/index.html">Threnoscope</a></h1>
   <nav id="nav">
     <ul>
       <li class="special">
@@ -40,19 +40,15 @@
             <!--
             
             
-            <li><a href="/audiovideo.html">Audio + Video</a></li>
+            <li><a href="/threnoscope/audiovideo.html">Audio + Video</a></li>
             
             
             
-            <li><a href="/documentation.html">Documentation</a></li>
+            <li><a href="/threnoscope/documentation.html">Documentation</a></li>
             
             
             
-            <li><a href="/download.html">Download</a></li>
-            
-            
-            
-            
+            <li><a href="/threnoscope/download.html">Download</a></li>
             
             
             
@@ -62,15 +58,19 @@
             
             
             
-            <li><a href="/publications.html">Publications</a></li>
             
             
             
-            <li><a href="/reference.html">Reference</a></li>
+            
+            <li><a href="/threnoscope/publications.html">Publications</a></li>
             
             
             
-            <li><a href="/tutorials.html">Tutorials</a></li>
+            <li><a href="/threnoscope/reference.html">Reference</a></li>
+            
+            
+            
+            <li><a href="/threnoscope/tutorials.html">Tutorials</a></li>
             
             
             -->
@@ -81,7 +81,7 @@
             <li><a href="publications.html">Publications</a></li>
             <li><a href="download.html">Download</a></li>
             <!--<li><a href="#">Log In</a></li>
-            <li><a href="/feed.xml"
+            <li><a href="/threnoscope/feed.xml"
                    class="icon fa-feed"> RSS Feed</a></li>-->
           </ul>
         </div>
@@ -111,14 +111,14 @@
 						<section class="spotlight">
 							<div class="image"><img src="images/harmonicsView.png" alt="" /></div><div class="content">
 								<h4>The harmonics view</h4>
-								<p>In the harmonics view, we see concentric circles in the middle of the score representation. These are the harmonics of the fundamental frequency, for example 55Hz (which would be the note A in Western convention). The second circle would then be 110Hz, the third 165Hz, fourth 200Hz, and so on. There are lines crossing the circles and these are the sound outputs of the system. In this case we have 8 channels that cross the circle around the performer/listener (who are in the centre). 
+								<p>In the harmonics view, we see concentric circles in the middle of the score representation. These are the harmonics of the fundamental frequency, for example 55Hz (the note A in the Western convention). The second circle would then be 110Hz, the third 165Hz, fourth 200Hz, and so on. There are lines crossing the circles and these are the sound outputs of the system. In this case we have 8 channels that cross the circle around the performer/listener (who are in the centre). 
 								</p>
 							</div>
 						</section>
 						<section class="spotlight">
 							<div class="image"><img src="images/scaleView.png" alt="" /></div><div class="content">
 								<h4>The scale view</h4>
-								<p>In the scale view we have the same "pitch space" as in the harmonics view, a drone in the same location would not change pitch by switching between the views. It is only the representation that has switched from showing the harmonics of the fundamental frequency to displaying the selected scale in its tuning. On this picture we see a <b><i>major scale</i></b> (two whole steps, one half step, three whole and a half) where the red circles represent the octaves. (55Hz, 110, 220, 440, etc.)</i> 
+								<p>In the scale view we have the same "pitch space" as in the harmonics view, a drone in the same location would not change pitch by switching between the views. It is only the representation that has changed from showing the harmonics of the fundamental frequency to displaying the selected scale in its tuning. On this picture we see a <b><i>major scale</i></b> (two whole steps, one half step, three whole and a half) where the red circles represent the octaves (55Hz, 110, 220, 440, etc.)</i> 
 
 								</p>
 							</div>
@@ -127,7 +127,7 @@
 							<div class="image"><img src="images/harmonicsView.png" alt="" /></div><div class="content">
 								<h4>The drones</h4>
 								<p>
-								On this image we also see four "drones" with different waveforms. We can see one sine wave (only one harmonic) and the other waves with varying widths. The width of the drone is the number of harmonics it has until it is cut off with a lowpass filter. The purple drone, for instance, has 5 harmonics before it is attenuated. The cross-hairs on this picture are the sound channels (the speakers) and when a drone overlaps a line, it sounds from that channel.							
+								On this image we also see four "drones" with different waveforms. We can see one sine wave (only one harmonic, thus thin) and the other waves with varying widths. The width of the drone is the number of harmonics it has until it is cut off with a lowpass filter. The purple drone, for instance, has 5 harmonics before it is attenuated. The cross-hairs on this picture are the sound channels (the speakers) and when a drone overlaps a line, it sounds from that channel.							
 							</p>
 							</div>
 						</section>
@@ -393,13 +393,13 @@ ThrenoScope.new(8);</code></pre>
 
 
       <!-- Scripts -->
-<script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.scrollex.min.js"></script>
-<script src="/js/jquery.scrolly.min.js"></script>
-<script src="/js/skel.min.js"></script>
-<script src="/js/util.js"></script>
-<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
-<script src="/js/main.js"></script>
+<script src="/threnoscope/js/jquery.min.js"></script>
+<script src="/threnoscope/js/jquery.scrollex.min.js"></script>
+<script src="/threnoscope/js/jquery.scrolly.min.js"></script>
+<script src="/threnoscope/js/skel.min.js"></script>
+<script src="/threnoscope/js/util.js"></script>
+<!--[if lte IE 8]><script src="/threnoscope/js/ie/respond.min.js"></script><![endif]-->
+<script src="/threnoscope/js/main.js"></script>
 
 
     </div>

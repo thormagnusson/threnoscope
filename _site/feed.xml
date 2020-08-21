@@ -4,10 +4,10 @@
     <title>Threnoscope</title>
     <description>A live coding environment for long durations!
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 17 Aug 2020 18:27:33 +0000</pubDate>
-    <lastBuildDate>Mon, 17 Aug 2020 18:27:33 +0000</lastBuildDate>
+    <link>http://localhost:4000/threnoscope/</link>
+    <atom:link href="http://localhost:4000/threnoscope/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 21 Aug 2020 16:21:03 +0000</pubDate>
+    <lastBuildDate>Fri, 21 Aug 2020 16:21:03 +0000</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
   </channel>
